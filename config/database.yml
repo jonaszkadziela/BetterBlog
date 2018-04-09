@@ -17,6 +17,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  username: <%= ENV['BETTERBLOG_DATABASE_LOGIN'] %>
+  password: <%= ENV['BETTERBLOG_DATABASE_PASSWORD'] %>
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -24,6 +26,7 @@ default: &default
 development:
   <<: *default
   database: BetterBlog_development
+  host: localhost
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -81,5 +84,3 @@ test:
 production:
   <<: *default
   database: BetterBlog_production
-  username: BetterBlog
-  password: <%= ENV['BETTERBLOG_DATABASE_PASSWORD'] %>
