@@ -1,6 +1,14 @@
 #page_wrapper
   %h1 New post
   = form_for :post, url: posts_path do |f|
+    = if @post.errors.any?
+      .errors
+        %h2
+          = pluralize(@post.errors.count, "error")
+          prevented this post from saving
+        %ul
+          = @post.errors.full_messages.each do |msg|
+            %li= msg
     %p
       = f.label :title
       = f.text_field :title, class: "form-control"
