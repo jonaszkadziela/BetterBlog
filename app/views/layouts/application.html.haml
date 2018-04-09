@@ -24,14 +24,16 @@
           %a{href: "https://github.com/jonaszkadziela", target: "_blank"} GitHub
         %li
           %a{href: "http://www.youtube.com/channel/UCRGptWGCh-CsEEKVOFn_uwg", target: "_blank"} YouTube
-      %p.sign_in Admin Login
+      = if !user_signed_in?
+        %p.sign_in Admin Login
 
     #main_content
       #header
         %p= link_to "BetterBlog", root_path
-        .buttons
-          %button.button= link_to "New post", new_post_path
-          %button.button Log out
+        = if user_signed_in?
+          .buttons
+            %button.button= link_to "New post", new_post_path
+            %button.button Log out
       = flash.each do |name, msg|
         = content_tag(:div, msg, class: "alert")
       = yield
