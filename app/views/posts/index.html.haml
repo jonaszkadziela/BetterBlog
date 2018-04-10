@@ -1,4 +1,9 @@
-= @posts.each do |post|
-  .post_wrapper
-    %h2.title= link_to post.title, post
-    %p.date= post.created_at.strftime("%B, %d, %Y")
+.row.index
+  .container.responsive
+    %h1.page-title Browse all posts
+    - @posts.each do |post|
+      .post-wrapper
+        %h2.title= link_to post.title, post
+        %p.date
+          Posted 
+          =post.created_at.strftime("%d %B %Y")

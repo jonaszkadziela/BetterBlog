@@ -1,13 +1,13 @@
-#page_wrapper
-  #profile_image
-    = image_tag "profile-picture.png"
-  #content
-    %h1 Cześć, nazywam się Jonasz Kądziela...
-    %p ...i od dawna pasjonuję się informatyką. Swoją przygodę z komputerami rozpocząłem od tworzenia prymitywnych gier 2D.
-    %p Po wielu latach intensywnej nauki znacznie poszerzyłem swoje umiejętności, a miłość do informatyki pozostała.
-    %p
-      Znajdź mnie na
-      %a{href: "http://www.facebook.com/jonaszkadzielapl", target: "_blank"} Facebook,
-      %a{href: "https://github.com/jonaszkadziela", target: "_blank"} GitHub
-      oraz
-      %a{:href => "https://www.jonaszkadziela.pl", target: "_blank"} jonaszkadziela.pl
+.row.about
+  .container.responsive
+    .col-md-12.col-lg-4
+      = image_tag "profile-picture.png", class: "profile-picture circle"
+    .col-md-12.col-lg-8
+      .content
+        %h1 Welcome to my blog!
+        %p
+          My name is Jonasz Kądziela and I have been passionate about IT for a long time. I started my adventure with computers from creating primitive 2D games.
+          After many years of intensive education, I have significantly expanded my skills, however my love for computer science remained.
+        %p
+          You can read more info about me on my website: 
+          %a{:href => "https://www.jonaszkadziela.pl", target: "_blank"} jonaszkadziela.pl

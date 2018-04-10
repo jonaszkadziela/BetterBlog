@@ -1,0 +1,95 @@
+.form input, .form textarea
+{
+	background: #fff;
+	font-size: 14px;
+	border: 0;
+	border-radius: 0;
+	outline: 0;
+	width: 100%;
+}
+
+.form input[type=text], .form input[type=email], .form input[type=password], .form textarea
+{
+	margin: 0 0 10px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+/*
+.form input[type=text]:hover,
+.form input[type=email]:hover,
+.form input[type=password]:hover,
+.form textarea:hover
+{
+	background: #e8e8e8;
+}
+*/
+
+.form input[type=text]:active, .form input[type=text]:focus,
+.form input[type=email]:active, .form input[type=email]:focus,
+.form input[type=password]:active, .form input[type=password]:focus,
+.form textarea:active, .form textarea:focus
+{
+	border: 4px solid #fff;
+	border-image: linear-gradient(to right, #1063c6 0%, #000072 100%) 4 stretch;
+	background-clip: padding-box;
+	padding: 6px;
+	opacity: 1;
+}
+
+.form input[type=submit]
+{
+	font-size: 20px;
+	font-weight: 700;
+	padding: 15px;
+	box-sizing: border-box;
+	color: #fff;
+	text-transform: uppercase;
+	background-color: #1063c6;
+	background-image: linear-gradient(to right, #1063c6 0%, #000072 100%);
+}
+
+.form input[type=submit]:hover, .form input[type=submit]:active, .form input[type=submit]:focus
+{
+	background: #000072;
+}
+
+.form input[type=checkbox]
+{
+	width: 20px;
+	height: 20px;
+	border: 2px solid #000072;
+	border-radius: 0;
+	outline: 0;
+	position: relative;
+	display: block;
+	margin: 0 0 0 10px;
+	padding: 5px;
+	box-sizing: border-box;
+}
+
+.form .field
+{
+	margin-bottom: 10px;
+}
+
+.form .checkbox
+{
+	display: flex;
+	justify-content: center;
+	width: 50%;
+	margin: 0 auto 20px auto;
+	background-color: #ddd;
+	padding: 15px;
+	label
+	{
+		font-size: 16px;
+		font-weight: 700;
+		padding: 0;
+	}
+}
+
+.links
+{
+	margin-top: 20px;
+}

@@ -4,36 +4,51 @@
     %title BetterBlog
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900'
+    = stylesheet_link_tag    'application', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'
   %body
-    #sidebar
-      #logo
-        = link_to root_path do
-          = image_tag "jk-logo-black.png", class: "img-responsive"
-      %ul
-        %li.category Website
-        %li= link_to "Blog", root_path
-        %li= link_to "About", about_path
-      %ul
-        %li.category Social
-        %li
-          %a{href: "http://www.facebook.com/jonaszkadzielapl", target: "_blank"} Facebook
-        %li
-          %a{href: "http://www.linkedin.com/in/jonaszkadziela", target: "_blank"} LinkedIn
-        %li
-          %a{href: "https://github.com/jonaszkadziela", target: "_blank"} GitHub
-        %li
-          %a{href: "http://www.youtube.com/channel/UCRGptWGCh-CsEEKVOFn_uwg", target: "_blank"} YouTube
-      = if !user_signed_in?
-        %p.sign_in Admin Login
-
-    #main_content
-      #header
-        %p= link_to "BetterBlog", root_path
-        = if user_signed_in?
-          .buttons
-            %button.button= link_to "New post", new_post_path
-            %button.button Log out
-      = flash.each do |name, msg|
-        = content_tag(:div, msg, class: "alert")
-      = yield
+    %nav.navbar.navbar-inverse.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %span.navbar-brand= link_to "BetterBlog", root_path
+        #navbar.navbar-collapse.collapse
+          %ul.nav.navbar-nav.navbar-right.nav-buttons
+            - if user_signed_in?
+              %li
+                = link_to "New post", new_post_path, class: "btn my-btn", type: "button"
+              %li
+                = link_to "Sign out", destroy_user_session_path, :method => :delete, class: "btn my-btn", type: "button"
+            - else
+              %li
+                = link_to "Sign in", new_user_session_path, class: "btn my-btn", type: "button"
+    
+    .container-fluid
+      .row
+        .sidebar
+          .nav-section
+            %p Navigation
+          %ul.nav.nav-sidebar
+            %li= link_to "Blog", root_path
+            %li= link_to "About", about_path
+          .nav-section.links
+            %p Find me on
+            .social
+              %a{:href => "http://www.facebook.com/jonaszkadzielapl", :target => "_blank"}
+                %i.fa.fa-facebook
+              %a{:href => "http://www.linkedin.com/in/jonaszkadziela", :target => "_blank"}
+                %i.fa.fa-linkedin
+              %a{:href => "https://github.com/jonaszkadziela", :target => "_blank"}
+                %i.fa.fa-github
+              %a{:href => "http://www.youtube.com/channel/UCRGptWGCh-CsEEKVOFn_uwg", :target => "_blank"}
+                %i.fa.fa-youtube-play
+        .main
+          = render 'layouts/flash_messages'
+          = yield
