@@ -63,13 +63,24 @@ a
 	}
 }
 
-.my-alert-info
+.my-alert
 {
 	font-size: 16px;
 	font-weight: 700;
-	background: linear-gradient(to right, #1063c6 0%, #000072 100%);
 	border: none;
 	border-radius: 0;
+}
+
+.my-alert-info
+{
+	@extend .my-alert;
+	background: linear-gradient(to right, #1063c6 0%, #000072 100%);
+}
+
+.my-alert-error
+{
+	@extend .my-alert;
+	background: linear-gradient(to right, #ba232c 0%, #7f060d 100%);
 }
 
 .btn

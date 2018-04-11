@@ -50,5 +50,6 @@
               %a{:href => "http://www.youtube.com/channel/UCRGptWGCh-CsEEKVOFn_uwg", :target => "_blank"}
                 %i.fa.fa-youtube-play
         .main
-          = render 'layouts/flash_messages'
+          .container.responsive
+            = render 'layouts/flash_messages'
           = yield

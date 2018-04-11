@@ -9,8 +9,8 @@ RSpec.feature "Creating posts" do
 
     click_link "New post"
 
-    fill_in "post[title]", with: "Sample title"
-    fill_in "post[body]", with: "Sample body"
+    fill_in "Title", with: "Sample title"
+    fill_in "Body", with: "Sample body"
 
     click_button "Create Post"
 
