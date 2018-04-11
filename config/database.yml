@@ -84,3 +84,4 @@ test:
 production:
   <<: *default
   database: BetterBlog_production
+  username: betterblog
