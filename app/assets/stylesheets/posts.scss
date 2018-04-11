@@ -67,3 +67,27 @@
   background-color: #ddd;
   padding: 30px;
 }
+
+@media (max-width: 992px)
+{
+  .post-wrapper, .add-comment
+  {
+    padding: 15px;
+  }
+  .comment
+  {
+    padding: 15px;
+    .name
+    {
+      font-size: 20px;
+    }
+    .date
+    {
+      font-size: 10px;
+    }
+    .body
+    {
+      font-size: 14px;
+    }
+  }
+}

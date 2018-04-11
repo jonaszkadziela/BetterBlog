@@ -13,7 +13,11 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore Code coverage files
+/coverage/*
+
 /node_modules
 /yarn-error.log
 
 .byebug_history
+.env
