@@ -36,6 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml', '~> 5.0.4'
 gem 'coffee-script-source', '1.8.0'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'autoprefixer-rails', '~> 8.2'
 gem 'devise', '~> 4.4', '>= 4.4.3'
 
 group :development, :test do
@@ -48,6 +49,9 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  gem 'guard', '~> 2.14', '>= 2.14.2'
+  gem 'guard-rspec', '~> 4.7', '>= 4.7.3'
+  gem 'guard-cucumber', '~> 2.1', '>= 2.1.2'
 end
 
 group :test do
