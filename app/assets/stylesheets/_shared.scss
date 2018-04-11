@@ -1,0 +1,11 @@
+$primary-color: #1063c6;
+$secondary-color: #000072;
+$danger-primary-color: #ba232c;
+$danger-secondary-color: #7f060d;
+
+$primary-gradient: linear-gradient(to right, $primary-color 0%, $secondary-color 100%);
+$danger-gradient: linear-gradient(to right, $danger-primary-color 0%, $danger-secondary-color 100%);
+
+$small-device: 768px;
+$medium-device: 992px;
+$large-device: 1200px;

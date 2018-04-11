@@ -10,10 +10,8 @@
       - if user_signed_in?
         .buttons
           = link_to "Edit", edit_post_path(@post), class: "btn my-btn"
-          = link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn my-btn"
+          = link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn my-btn-danger"
     .col-md-12.well
-      %h2
-        = @post.comments.count
-        comments
+      %h2= pluralize(@post.comments.count, "comment")
       = render @post.comments
       = render 'comments/form'

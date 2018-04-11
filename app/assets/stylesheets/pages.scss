@@ -1,6 +1,4 @@
-// Place all the styles related to the pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "shared";
 
 .responsive
 {
@@ -12,7 +10,7 @@
 
 .page-title
 {
-  color: #1063c6;
+  color: $primary-color;
   font-size: 46px;
   text-align: center;
   margin-bottom: 30px;
@@ -96,7 +94,7 @@
   }
 }
 
-@media (max-width: 992px)
+@media (max-width: $medium-device)
 {
   .responsive
   {

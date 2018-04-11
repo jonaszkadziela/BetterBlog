@@ -20,6 +20,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post created successfully!"
       redirect_to @post
     else
+      flash[:error] = "Could not create the post!"
       render 'new'
     end
   end

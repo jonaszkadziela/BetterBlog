@@ -15,6 +15,7 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "shared";
 @import "form_styles";
 
 body, html
@@ -29,7 +30,7 @@ body
 
 a
 {
-	color: #1063c6;
+	color: $primary-color;
   transition: 0.1s;
 	text-decoration: none;
 	&:active, &:focus, &:hover
@@ -74,13 +75,13 @@ a
 .my-alert-info
 {
 	@extend .my-alert;
-	background: linear-gradient(to right, #1063c6 0%, #000072 100%);
+	background: $primary-gradient;
 }
 
 .my-alert-error
 {
 	@extend .my-alert;
-	background: linear-gradient(to right, #ba232c 0%, #7f060d 100%);
+	background: $danger-gradient;
 }
 
 .btn
@@ -89,6 +90,7 @@ a
 	font-size: 14px;
 	background: none;
 	border-radius: 25px;
+	font-weight: 700;
 	&:active, &:focus, &:hover
 	{
 		box-shadow: none;
@@ -97,19 +99,29 @@ a
 
 .my-btn
 {
-	border: 3px solid #1063c6;
-	color: #1063c6;
-	font-weight: 700;
+	border: 3px solid $primary-color;
+	color: $primary-color;
 	&:active, &:focus, &:hover
 	{
-		background-color: #1063c6;
+		background-color: $primary-color;
+		color: #fff;
+	}
+}
+
+.my-btn-danger
+{
+	border: 3px solid $danger-primary-color;
+	color: $danger-primary-color;
+	&:active, &:focus, &:hover
+	{
+		background-color: $danger-primary-color;
 		color: #fff;
 	}
 }
 
 .navbar
 {
-	background: linear-gradient(to right, #1063c6 0%, #000072 100%);
+	background: $primary-gradient;
 	padding: 10px 0;
 	.container-fluid
 	{
@@ -171,7 +183,7 @@ a
 	}
 	&.links
 	{
-		background: linear-gradient(to right, #1063c6 0%, #000072 100%);
+		background: $primary-gradient;
 		margin-top: auto;
 		width: 100%;
 		padding: 20px;
@@ -241,7 +253,7 @@ a
   display: none;
 }
 
-@media (min-width: 768px)
+@media (min-width: $small-device)
 {
 	.sidebar
 	{
@@ -264,7 +276,7 @@ a
 	}
 }
 
-@media (min-width: 992px)
+@media (min-width: $medium-device)
 {
 	.main
 	{
@@ -272,7 +284,7 @@ a
 	}
 }
 
-@media (max-width: 768px)
+@media (max-width: $small-device)
 {
 	.nav-buttons
 	{

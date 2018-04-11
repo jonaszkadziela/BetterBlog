@@ -9,4 +9,4 @@
     %p.body= comment.body
   - if user_signed_in?
     .buttons
-      = link_to "Delete", [comment.post, comment], method: :delete, class: "button", data: { confirm: "Are you sure?" }, class: "btn my-btn"
+      = link_to "Delete", [comment.post, comment], method: :delete, class: "button", data: { confirm: "Are you sure?" }, class: "btn my-btn-danger"

@@ -1,10 +1,10 @@
 .add-comment.form
   %h2 Add a comment
   = form_for([@post, @post.comments.build]) do |f|
-    %p
+    .field
       = f.label :name
       = f.text_field :name
-    %p
+    .field
       = f.label :body
       = f.text_area :body, class: "resize-v"
     = f.submit

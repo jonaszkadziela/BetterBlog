@@ -4,14 +4,14 @@
       .errors
         %h2
           = pluralize(@post.errors.count, "error")
-          prevented this post from saving
+          prevented this post from being saved:
         %ul
           - @post.errors.full_messages.each do |msg|
             %li= msg
-    %p
+    .field
       = f.label :title
       = f.text_field :title, placeholder: "Post title", autofocus: true
-    %p
+    .field
       = f.label :body
       = f.text_area :body, class: "resize-v", rows: "4", placeholder: "Post body"
     = f.submit

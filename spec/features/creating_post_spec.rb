@@ -1,10 +1,12 @@
 require "rails_helper"
 
 RSpec.feature "Creating posts" do
-  scenario "A user creates a new post" do
-    user = FactoryBot.create(:user)
-    login_as(user, :scope => :user)
+  before(:each) do
+    @user = FactoryBot.create(:user)
+    login_as(@user, :scope => :user)
+  end
 
+  scenario "A user creates a new post" do
     visit "/"
 
     click_link "New post"
@@ -16,5 +18,20 @@ RSpec.feature "Creating posts" do
 
     expect(page).to have_content("Post created successfully!")
     #expect(page.current_path).to eq(???) TODO: add post path as parameter
+  end
+
+  scenario "A user fails to create a new post" do
+    visit "/"
+
+    click_link "New post"
+
+    fill_in "Title", with: ""
+    fill_in "Body", with: ""
+
+    click_button "Create Post"
+
+    expect(page).to have_content("Could not create the post!")
+    expect(page).to have_content("Title can't be blank")
+    expect(page).to have_content("Body can't be blank")
   end
 end
