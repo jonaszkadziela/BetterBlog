@@ -10,8 +10,8 @@
             %li= msg
     %p
       = f.label :title
-      = f.text_field :title
+      = f.text_field :title, placeholder: "Post title", autofocus: true
     %p
       = f.label :body
-      = f.text_area :body, class: "resize-v", rows: "4"
+      = f.text_area :body, class: "resize-v", rows: "4", placeholder: "Post body"
     = f.submit

@@ -52,6 +52,8 @@ end
 
 group :test do
   gem 'capybara', '~> 3.0', '>= 3.0.1'
+  gem 'factory_bot_rails', '~> 4.8', '>= 4.8.2'
+  gem 'warden-rspec-rails', '~> 0.2.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
