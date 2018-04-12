@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "Show post" do
   before do
-    @post = Post.create(title: "Post title", body: "Post body")
+    @post = FactoryBot.create(:post)
   end
 
   scenario "A user shows a post" do

@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Posts", type: :request do
   before do
-    @post = Post.create(title: "Post title", body: "Post body")
+    @post = FactoryBot.create(:post)
   end
 
   describe "GET /posts/:id" do

@@ -4,13 +4,13 @@ FactoryBot.define do
     password "qwerty"
   end
 
-  factory :post do
-    title "Sample title"
-    body "Sample body"
+  factory :post do |p|
+    p.sequence(:title) { |p| "Post title #{p}" }
+    p.sequence(:body) { |p| "Post body #{p}" }
   end
 
   factory :comment do
-    name "Sample name"
-    body "Sample comment"
+    name "Comment name"
+    body "Comment body"
   end
 end
