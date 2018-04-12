@@ -1,0 +1,38 @@
+@import "shared";
+
+.pagination
+{
+  background: #eee;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  padding: 15px;
+  cursor: default;
+  display: block;
+  margin: 40px auto 0 auto;
+  font-weight: 500;
+  a, span
+  {
+    padding: 5px;
+  }
+  .disabled
+  {
+    color: #aaaaaa;
+  }
+  .current
+  {
+    color: #eee;
+    font-weight: 700;
+    font-style: normal;
+    background-color: $primary-color;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    line-height: 1.5;
+    border-radius: 15px;
+  }
+  a
+  {
+    color: #000;
+  }
+}

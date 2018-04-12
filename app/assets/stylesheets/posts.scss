@@ -26,11 +26,17 @@
   }
   .title
   {
-    margin-top: 0;
+    font-size: 36px;
+    margin: 0;
   }
   .date
   {
-    margin-bottom: 0;
+    margin-bottom: 10px;
+  }
+  .body
+  {
+    font-size: 16px;
+    line-height: 150%;
   }
 }
 
