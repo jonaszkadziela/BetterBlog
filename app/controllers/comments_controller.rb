@@ -1,20 +1,30 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:create, :edit, :update]
-  before_action :set_comment, only: [:destroy]
+  before_action :set_post, only: [:create]
+  before_action :set_comment, only: [:destroy, :edit, :update]
 
   def create
     @comment = Comment.create(comment_params.merge(post: @post))
     if @comment.save
-      flash[:success] = "Comment created successfully!"
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: "Comment created successfully!"
     else
       render 'posts/show'
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @comment.update(comment_params)
+      redirect_to post_path(@comment.post), notice: "Comment updated successfully!"
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @comment.destroy
-    redirect_to post_path(@comment.post.id)
+    redirect_to post_path(@comment.post)
   end
 
   private

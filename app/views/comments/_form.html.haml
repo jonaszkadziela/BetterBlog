@@ -1,5 +1,4 @@
-.add-comment.form
-  %h2 Add a comment
+.form
   = form_for([@post, @comment]) do |f|
     - if @comment.errors.any?
       .errors.alert.fade.in
