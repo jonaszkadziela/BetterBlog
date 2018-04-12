@@ -17,7 +17,6 @@ RSpec.feature "Creating posts" do
     click_button "Create Post"
 
     expect(page).to have_content("Post created successfully!")
-    #expect(page.current_path).to eq(???) TODO: add post path as parameter
   end
 
   scenario "A user fails to create a new post" do
