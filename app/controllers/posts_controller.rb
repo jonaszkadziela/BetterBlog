@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
   end
 
   def new
@@ -20,8 +21,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post created successfully!"
       redirect_to @post
     else
-      flash[:error] = "Could not create the post!"
-      render 'new'
+      render :new
     end
   end
 
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to @post
     else
-      render 'edit'
+      render :edit
     end
   end
 

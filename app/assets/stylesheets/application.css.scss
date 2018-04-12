@@ -53,6 +53,8 @@ a
 .alert
 {
 	color: #fff;
+	border: none;
+	border-radius: 0;
 	.close
 	{
 		color: #fff;
@@ -68,8 +70,6 @@ a
 {
 	font-size: 16px;
 	font-weight: 700;
-	border: none;
-	border-radius: 0;
 }
 
 .my-alert-info

@@ -30,7 +30,7 @@ RSpec.feature "Creating posts" do
 
     click_button "Create Post"
 
-    expect(page).to have_content("Could not create the post!")
+    expect(page).to have_content("prevented this post from being saved:")
     expect(page).to have_content("Title can't be blank")
     expect(page).to have_content("Body can't be blank")
   end

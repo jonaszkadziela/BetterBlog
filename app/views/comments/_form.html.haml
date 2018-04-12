@@ -1,6 +1,15 @@
 .add-comment.form
   %h2 Add a comment
-  = form_for([@post, @post.comments.build]) do |f|
+  = form_for([@post, @comment]) do |f|
+    - if @comment.errors.any?
+      .errors.alert.fade.in
+        %a.close{"data-dismiss" => "alert", :href => "#"} ×
+        %h2
+          = pluralize(@comment.errors.count, "error")
+          prevented this comment from being saved:
+        %ul
+          - @comment.errors.full_messages.each do |msg|
+            %li= msg
     .field
       = f.label :name
       = f.text_field :name

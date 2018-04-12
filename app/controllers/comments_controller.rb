@@ -1,14 +1,14 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:create, :destroy]
+  before_action :set_post, only: [:create, :edit, :update, :destroy]
 
   def create
-    @comment = @post.comments.create(comment_params)
+    @comment = @post.comments.build(comment_params)
     if @comment.save
       flash[:success] = "Comment created successfully!"
+      redirect_to post_path(@post)
     else
-      flash[:error] = "Could not create the comment!"
+      render 'posts/show'
     end
-    redirect_to post_path(@post)
   end
 
   def destroy
