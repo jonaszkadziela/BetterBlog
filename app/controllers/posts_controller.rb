@@ -39,6 +39,12 @@ class PostsController < ApplicationController
     @post.destroy
     redirect_to root_path
   end
+  
+  protected
+  def resource_not_found
+    flash[:error] = "The post you are looking for could not be found."
+    redirect_to root_path
+  end
 
   private
     def set_post
