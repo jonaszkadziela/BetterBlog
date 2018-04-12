@@ -1,13 +1,20 @@
 .row.index
   .container.responsive
-    %h1.page-title Browse all posts
-    - @posts.each do |post|
-      .post-wrapper
-        %h2.title= link_to post.title, post
-        %p.date
-          Posted 
-          =post.created_at.strftime("%d %B %Y")
-        %p.body= truncate(post.body, length: 300)
+    - if @posts.empty?
+      .no-posts
+        %h1.page-title There are no posts created yet
+        %p.body You can be the first person to create a post on this blog!
         .buttons
-          = link_to "Read more", post_path(post), class: "btn my-btn"
-    = will_paginate @posts, previous_label: "<< Previous", next_label: "Next >>"
+          = link_to "Create the first post", new_post_path, class: "btn my-btn"
+    - else
+      %h1.page-title Browse all posts
+      - @posts.each do |post|
+        .post-wrapper
+          %h2.title= link_to post.title, post
+          %p.date
+            Posted 
+            =post.created_at.strftime("%d %B %Y")
+          %p.body= truncate(post.body, length: 300)
+          .buttons
+            = link_to "Read more", post_path(post), class: "btn my-btn"
+      = will_paginate @posts, previous_label: "<< Previous", next_label: "Next >>"

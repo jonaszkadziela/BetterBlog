@@ -17,6 +17,8 @@ RSpec.feature "Creating posts" do
     click_button "Create Post"
 
     expect(page).to have_content("Post created successfully!")
+    expect(page).to have_content("Sample title")
+    expect(page).to have_content("Sample body")
   end
 
   scenario "A user fails to create a new post" do

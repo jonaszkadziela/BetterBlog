@@ -132,6 +132,7 @@ a
 	{
 		a
 		{
+			font-size: 26px;
 			font-weight: bold;
 			color: #fff !important;
 			&:hover
@@ -177,9 +178,9 @@ a
 	p
 	{
 		color: #fff;
-		font-size: 16px;
+		font-size: 20px;
 		font-weight: 700;
-		padding: 20px 30px;
+		padding: 15px 30px;
 		margin: 0;
 	}
 	&.links
@@ -297,4 +298,8 @@ a
 			margin: 5px 0 !important;
 		}
 	}
+	.buttons
+  {
+    justify-content: center;
+  }
 }
