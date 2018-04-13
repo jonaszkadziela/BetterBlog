@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Listing posts" do
+RSpec.feature "Listing many posts" do
   before do
     @post1 = FactoryBot.create(:post)
     @post2 = FactoryBot.create(:post)

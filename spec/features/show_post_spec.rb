@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Show post" do
+RSpec.feature "Showing single post" do
   before do
     @post = FactoryBot.create(:post)
   end

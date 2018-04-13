@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Creating posts" do
+RSpec.feature "Creating a post" do
   before(:each) do
     @user = FactoryBot.create(:user)
     login_as(@user, :scope => :user)
