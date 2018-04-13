@@ -16,7 +16,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-
     if @post.save
       redirect_to @post, notice: "Post created successfully!"
     else
@@ -36,14 +35,16 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
-    redirect_to posts_path, notice: "Post deleted successfully!"
+    if @post.destroy
+      redirect_to posts_path, notice: "Post deleted successfully!"
+    else
+      redirect_to @post, flash: { danger: "Could not delete the post!" }
+    end
   end
   
   protected
   def resource_not_found
-    flash[:error] = "The post you are looking for could not be found."
-    redirect_to root_path
+    redirect_to root_path, flash: { danger: "The post you are looking for could not be found." }
   end
 
   private

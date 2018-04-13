@@ -23,8 +23,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    redirect_to post_path(@comment.post)
+    if @comment.destroy
+      redirect_to post_path(@comment.post), notice: "Comment deleted successfully!"
+    else
+      redirect_to @comment, flash: { danger: "Could not delete the comment!" }
+    end
   end
 
   private

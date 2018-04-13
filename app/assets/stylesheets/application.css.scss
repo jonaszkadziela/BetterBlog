@@ -79,7 +79,7 @@ a
 	background: $primary-gradient;
 }
 
-.my-alert-error
+.my-alert-danger
 {
 	@extend .my-alert;
 	background: $danger-gradient;
