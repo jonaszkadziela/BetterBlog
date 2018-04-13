@@ -1,21 +1,18 @@
 require "rails_helper"
 
 RSpec.feature "Creating a post" do
-  before(:each) do
-    @user = FactoryBot.create(:user)
-    login_as(@user, :scope => :user)
-  end
-
+  let(:user) { FactoryBot.create(:user) }
   let(:post) { FactoryBot.build(:post) }
 
-  scenario "A user creates a new post" do
+  before(:each) do
+    login_as(user, :scope => :user)
     visit "/"
-
     click_link "New post"
+  end
 
+  scenario "A user creates a new post" do
     fill_in "Title", with: post.title
     fill_in "Body", with: post.body
-
     click_button "Create Post"
 
     expect(page).to have_content("Post created successfully!")
@@ -24,13 +21,8 @@ RSpec.feature "Creating a post" do
   end
 
   scenario "A user fails to create a new post" do
-    visit "/"
-
-    click_link "New post"
-
     fill_in "Title", with: ""
     fill_in "Body", with: ""
-
     click_button "Create Post"
 
     expect(page).to have_content("prevented this post from being saved:")

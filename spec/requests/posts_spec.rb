@@ -1,13 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Posts", type: :request do
-  before do
-    @post = FactoryBot.create(:post)
-  end
+  let!(:post) { FactoryBot.create(:post) }
 
   describe "GET /posts/:id" do
     context "with existing post" do
-      before { get "/posts/#{@post.id}" }
+      before { get "/posts/#{post.id}" }
 
       it "handles existing post" do
         expect(response.status).to eq 200
