@@ -1,18 +1,16 @@
 require "rails_helper"
 
 RSpec.feature "Showing single post" do
-  before do
-    @post = FactoryBot.create(:post)
-  end
+  let!(:post) { FactoryBot.create(:post) }
 
   scenario "A user shows a post" do
     visit "/"
 
-    click_link @post.title
+    click_link post.title
 
-    expect(page).to have_content(@post.title)
-    expect(page).to have_content(@post.body)
+    expect(page).to have_content(post.title)
+    expect(page).to have_content(post.body)
 
-    expect(current_path).to eq(post_path(@post))
+    expect(current_path).to eq(post_path(post))
   end
 end

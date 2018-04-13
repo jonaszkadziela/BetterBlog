@@ -38,13 +38,8 @@ class PostsController < ApplicationController
     if @post.destroy
       redirect_to posts_path, notice: "Post deleted successfully!"
     else
-      redirect_to @post, flash: { danger: "Could not delete the post!" }
+      redirect_to @post, alert: "Could not delete the post!"
     end
-  end
-  
-  protected
-  def resource_not_found
-    redirect_to root_path, flash: { danger: "The post you are looking for could not be found." }
   end
 
   private
@@ -54,5 +49,9 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:title, :body)
+    end
+    
+    def resource_not_found
+      redirect_to root_path, alert: "The post you are looking for could not be found."
     end
 end

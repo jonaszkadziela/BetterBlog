@@ -19,7 +19,7 @@ RSpec.describe "Posts", type: :request do
 
       it "handles non-existing post" do
         expect(response.status).to eq 302
-        expect(flash[:danger]).to eq "The post you are looking for could not be found."
+        expect(flash[:alert]).to eq "The post you are looking for could not be found."
       end
     end
   end

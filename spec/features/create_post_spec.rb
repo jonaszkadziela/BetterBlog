@@ -6,19 +6,21 @@ RSpec.feature "Creating a post" do
     login_as(@user, :scope => :user)
   end
 
+  let(:post) { FactoryBot.build(:post) }
+
   scenario "A user creates a new post" do
     visit "/"
 
     click_link "New post"
 
-    fill_in "Title", with: "Sample title"
-    fill_in "Body", with: "Sample body"
+    fill_in "Title", with: post.title
+    fill_in "Body", with: post.body
 
     click_button "Create Post"
 
     expect(page).to have_content("Post created successfully!")
-    expect(page).to have_content("Sample title")
-    expect(page).to have_content("Sample body")
+    expect(page).to have_content(post.title)
+    expect(page).to have_content(post.body)
   end
 
   scenario "A user fails to create a new post" do

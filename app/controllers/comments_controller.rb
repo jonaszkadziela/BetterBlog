@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
     if @comment.destroy
       redirect_to post_path(@comment.post), notice: "Comment deleted successfully!"
     else
-      redirect_to @comment, flash: { danger: "Could not delete the comment!" }
+      redirect_to @comment, alert: "Could not delete the comment!"
     end
   end
 
