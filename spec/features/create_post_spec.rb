@@ -15,9 +15,11 @@ RSpec.feature "Creating a post" do
     fill_in "Body", with: post.body
     click_button "Create Post"
 
+    expect(Post.last.user).to eq(user)
     expect(page).to have_content("Post created successfully!")
     expect(page).to have_content(post.title)
     expect(page).to have_content(post.body)
+    expect(page).to have_content("by #{user.email}")
   end
 
   scenario "A user fails to create a new post" do

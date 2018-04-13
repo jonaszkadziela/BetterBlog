@@ -13,7 +13,9 @@
           %h2.title= link_to post.title, post
           %p.date
             Posted 
-            =post.created_at.strftime("%d %B %Y")
+            = post.created_at.strftime("%d %B %Y")
+            by
+            = post.user.email
           %p.body= truncate(post.body, length: 300)
           .buttons
             = link_to "Read more", post_path(post), class: "btn my-btn"

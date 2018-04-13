@@ -7,6 +7,7 @@ FactoryBot.define do
   factory :post do |p|
     p.sequence(:title) { |p| "Post title #{p}" }
     p.sequence(:body) { |p| "Post body #{p}" }
+    user
   end
 
   factory :comment do
