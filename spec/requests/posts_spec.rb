@@ -26,26 +26,35 @@ RSpec.describe "Posts", type: :request do
 
   describe "DELETE /posts/:id/" do
     context "with anonymous user" do
+      before { delete "/posts/#{post.id}/" }
+
       it "redirects to the sign in page" do
-        delete "/posts/#{post.id}/"
+        expect(response).to redirect_to(new_user_session_path)
         expect(response.status).to eq 302
         expect(flash[:alert]).to eq "You need to sign in or sign up before continuing."
       end
     end
 
     context "with user who does not own the post" do
-      it "redirects to the home page" do
+      before do
         login_as(user2)
         delete "/posts/#{post.id}/"
+      end
+
+      it "redirects to the home page" do
+        expect(response).to redirect_to(root_path)
         expect(response.status).to eq 302
         expect(flash[:alert]).to eq "You can only delete your own posts!"
       end
     end
 
     context "with user who owns the post" do
-      it "successfully deletes post" do
+      before do
         login_as(user1)
         delete "/posts/#{post.id}/"
+      end
+
+      it "successfully deletes post" do
         expect(response.status).to eq 302
       end
     end
@@ -53,26 +62,35 @@ RSpec.describe "Posts", type: :request do
 
   describe "GET /posts/:id/edit" do
     context "with anonymous user" do
+      before { get "/posts/#{post.id}/edit" }
+
       it "redirects to the sign in page" do
-        get "/posts/#{post.id}/edit"
+        expect(response).to redirect_to(new_user_session_path)
         expect(response.status).to eq 302
         expect(flash[:alert]).to eq "You need to sign in or sign up before continuing."
       end
     end
 
     context "with user who does not own the post" do
-      it "redirects to the home page" do
+      before do
         login_as(user2)
         get "/posts/#{post.id}/edit"
+      end
+
+      it "redirects to the home page" do
+        expect(response).to redirect_to(root_path)
         expect(response.status).to eq 302
         expect(flash[:alert]).to eq "You can only edit your own posts!"
       end
     end
 
     context "with user who owns the post" do
-      it "successfully gets edit post page" do
+      before do
         login_as(user1)
         get "/posts/#{post.id}/edit"
+      end
+
+      it "successfully gets edit post page" do
         expect(response.status).to eq 200
       end
     end

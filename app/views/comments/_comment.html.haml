@@ -1,14 +1,15 @@
-.row.comment
-  .col-md-12.content
-    %p.name
-      %strong= comment.name
-    %p.date
-      Commented
-      = time_ago_in_words(comment.created_at)
-      ago by
-      = comment.user.email
-    %p.body= comment.body
-    - if user_signed_in? && comment.user == current_user
-      .buttons
-        = link_to "Edit", edit_comment_path(comment), class: "btn my-btn"
-        = link_to "Delete", comment, method: :delete, data: { confirm: "Are you sure?" }, class: "btn my-btn-danger"
+- persisted_comments(@comments).each do |comment|
+  .row.comment
+    .col-md-12.content
+      %p.name
+        %strong= comment.name
+      %p.date
+        Commented
+        = time_ago_in_words(comment.created_at)
+        ago by
+        = comment.user.email
+      %p.body= comment.body
+      - if user_signed_in? && comment.user == current_user
+        .buttons
+          = link_to "Edit", edit_post_comment_path(comment), class: "btn my-btn"
+          = link_to "Delete", comment.post, method: :delete, data: { confirm: "Are you sure?" }, class: "btn my-btn-danger"
