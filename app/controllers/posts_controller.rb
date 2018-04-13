@@ -25,13 +25,20 @@ class PostsController < ApplicationController
   end
 
   def edit
+    if @post.user != current_user
+      redirect_to root_path, alert: "You can only edit you own posts!"
+    end
   end
 
   def update
-    if @post.update(post_params)
-      redirect_to @post, notice: "Post updated successfully!"
+    if @post.user != current_user
+      redirect_to root_path, alert: "You can only edit you own posts!"
     else
-      render :edit
+      if @post.update(post_params)
+        redirect_to @post, notice: "Post updated successfully!"
+      else
+        render :edit
+      end
     end
   end
 

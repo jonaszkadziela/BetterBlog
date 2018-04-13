@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "Deleting a post" do
   let(:user) { FactoryBot.create(:user) }
-  let!(:post) { FactoryBot.create(:post) }
+  let!(:post) { FactoryBot.create(:post, user: user) }
 
   before do
     login_as(user, :scope => :user)
