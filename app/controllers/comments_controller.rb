@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:create]
+  before_action :set_post, only: [:create, :edit, :update, :destroy]
   before_action :set_comment, except: [:create]
   before_action :authenticate_user!
 
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
   end
   
   def set_comment
-    @comment = Comment.find(params[:id])
+    @comment = @post.comments.find(params[:id])
   end
 
   def comment_params
