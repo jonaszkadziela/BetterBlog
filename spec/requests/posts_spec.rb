@@ -24,6 +24,33 @@ RSpec.describe "Posts", type: :request do
     end
   end
 
+  describe "DELETE /posts/:id/" do
+    context "with anonymous user" do
+      it "redirects to the sign in page" do
+        delete "/posts/#{post.id}/"
+        expect(response.status).to eq 302
+        expect(flash[:alert]).to eq "You need to sign in or sign up before continuing."
+      end
+    end
+
+    context "with user who does not own the post" do
+      it "redirects to the home page" do
+        login_as(user2)
+        delete "/posts/#{post.id}/"
+        expect(response.status).to eq 302
+        expect(flash[:alert]).to eq "You can only delete your own posts!"
+      end
+    end
+
+    context "with user who owns the post" do
+      it "successfully deletes post" do
+        login_as(user1)
+        delete "/posts/#{post.id}/"
+        expect(response.status).to eq 302
+      end
+    end
+  end
+
   describe "GET /posts/:id/edit" do
     context "with anonymous user" do
       it "redirects to the sign in page" do
@@ -38,7 +65,7 @@ RSpec.describe "Posts", type: :request do
         login_as(user2)
         get "/posts/#{post.id}/edit"
         expect(response.status).to eq 302
-        expect(flash[:alert]).to eq "You can only edit you own posts!"
+        expect(flash[:alert]).to eq "You can only edit your own posts!"
       end
     end
 

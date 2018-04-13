@@ -26,13 +26,13 @@ class PostsController < ApplicationController
 
   def edit
     if @post.user != current_user
-      redirect_to root_path, alert: "You can only edit you own posts!"
+      redirect_to root_path, alert: "You can only edit your own posts!"
     end
   end
 
   def update
     if @post.user != current_user
-      redirect_to root_path, alert: "You can only edit you own posts!"
+      redirect_to root_path, alert: "You can only edit your own posts!"
     else
       if @post.update(post_params)
         redirect_to @post, notice: "Post updated successfully!"
@@ -43,10 +43,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    if @post.destroy
-      redirect_to posts_path, notice: "Post deleted successfully!"
+    if @post.user != current_user
+      redirect_to root_path, alert: "You can only delete your own posts!"
     else
-      redirect_to @post, alert: "Could not delete the post!"
+      if @post.destroy
+        redirect_to posts_path, notice: "Post deleted successfully!"
+      else
+        redirect_to @post, alert: "Could not delete the post!"
+      end
     end
   end
 
