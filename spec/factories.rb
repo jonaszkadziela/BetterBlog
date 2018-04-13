@@ -10,8 +10,8 @@ FactoryBot.define do
     user
   end
 
-  factory :comment do
-    name "Comment name"
-    body "Comment body"
+  factory :comment do |c|
+    c.sequence(:body) { |c| "Comment body #{c}" }
+    user
   end
 end

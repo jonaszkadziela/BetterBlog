@@ -8,7 +8,7 @@
         ago by
         = @post.user.email
       %p.body= @post.body
-      - if user_signed_in? && current_user == @post.user
+      - if user_signed_in? && @post.user == current_user
         .buttons
           = link_to "Edit", edit_post_path(@post), class: "btn my-btn"
           = link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn my-btn-danger"

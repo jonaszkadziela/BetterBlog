@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_post, only: [:create]
-  before_action :set_comment, only: [:destroy, :edit, :update]
-  before_action :authenticate_user!, except: [:create]
+  before_action :set_comment, except: [:create]
+  before_action :authenticate_user!
 
   def create
     @comment = Comment.create(comment_params.merge(post: @post))
+    @comment.user = current_user
     if @comment.save
       redirect_to post_path(@post), notice: "Comment created successfully!"
     else
@@ -13,21 +14,32 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    if @comment.user != current_user
+      redirect_to root_path, alert: "You can only edit your own comments!"
+    end
   end
 
   def update
-    if @comment.update(comment_params)
-      redirect_to post_path(@comment.post), notice: "Comment updated successfully!"
+    if @comment.user != current_user
+      redirect_to root_path, alert: "You can only edit your own comments!"
     else
-      render :edit
+      if @comment.update(comment_params)
+        redirect_to post_path(@comment.post), notice: "Comment updated successfully!"
+      else
+        render :edit
+      end
     end
   end
 
   def destroy
-    if @comment.destroy
-      redirect_to post_path(@comment.post), notice: "Comment deleted successfully!"
+    if @comment.user != current_user
+      redirect_to root_path, alert: "You can only delete your own comments!"
     else
-      redirect_to @comment, alert: "Could not delete the comment!"
+      if @comment.destroy
+        redirect_to post_path(@comment.post), notice: "Comment deleted successfully!"
+      else
+        redirect_to @comment, alert: "Could not delete the comment!"
+      end
     end
   end
 
@@ -42,5 +54,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:name, :body)
+  end
+
+  def resource_not_found
+    redirect_to root_path, alert: "The comment you are looking for could not be found."
   end
 end

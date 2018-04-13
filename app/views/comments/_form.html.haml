@@ -10,9 +10,6 @@
           - @comment.errors.full_messages.each do |msg|
             %li= msg
     .field
-      = f.label :name
-      = f.text_field :name
-    .field
       = f.label :body
-      = f.text_area :body, class: "resize-v"
+      = f.text_area :body, class: "resize-v", rows: "2", placeholder: "Comment body"
     = f.submit
