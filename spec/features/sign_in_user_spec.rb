@@ -6,11 +6,12 @@ RSpec.feature "A user signs in" do
   scenario "with valid credentials" do
     visit "/"
     click_link "Sign in"
-    fill_in "Email", with: user.email
+    fill_in "Email or username", with: user.username
     fill_in "Password", with: user.password
     click_button "Log in"
 
     expect(page).to have_content("Signed in successfully.")
+    expect(page).to have_content(user.username)
     expect(page).to have_link("New post")
     expect(page).not_to have_link("Sign in")
   end

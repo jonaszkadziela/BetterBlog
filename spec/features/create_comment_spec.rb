@@ -15,6 +15,7 @@ RSpec.feature "Creating a comment to post" do
 
     expect(Comment.last.user).to eq(user2)
     expect(page).to have_content("Comment created successfully!")
+    expect(page).to have_content(user2.username)
     expect(page).to have_content(comment.body)
     expect(current_path).to eq(post_path(post.id))
   end

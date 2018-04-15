@@ -19,7 +19,7 @@ RSpec.feature "Creating a post" do
     expect(page).to have_content("Post created successfully!")
     expect(page).to have_content(post.title)
     expect(page).to have_content(post.body)
-    expect(page).to have_content("by #{user.email}")
+    expect(page).to have_content(user.username)
   end
 
   scenario "A user fails to create a new post" do
