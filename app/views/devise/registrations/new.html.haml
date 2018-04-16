@@ -5,17 +5,20 @@
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         = devise_error_messages!
         .field
+          = f.label :username
+          = f.text_field :username, autofocus: true, autocomplete: "off", placeholder: "Username"
+        .field
           = f.label :email
-          = f.email_field :email, autofocus: true, autocomplete: "email"
+          = f.email_field :email, autocomplete: "email", placeholder: "Email"
         .field
           = f.label :password
           - if @minimum_password_length
             %em
               (#{@minimum_password_length} characters minimum)
-          = f.password_field :password, autocomplete: "off"
+          = f.password_field :password, autocomplete: "off", placeholder: "Password"
         .field
           = f.label :password_confirmation
-          = f.password_field :password_confirmation, autocomplete: "off"
+          = f.password_field :password_confirmation, autocomplete: "off", placeholder: "Enter your password again"
         .actions
           = f.submit "Sign up"
       = render "devise/shared/links"

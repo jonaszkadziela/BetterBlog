@@ -2,9 +2,9 @@
   .row.comment
     .col-md-12.content
       %p.name
-        %strong= comment.user.email
+        %strong= comment.user.username
       %p.date
-        commented
+        Commented
         = time_ago_in_words(comment.created_at)
         ago
       %p.body= comment.body

@@ -15,7 +15,7 @@
             Posted 
             = post.created_at.strftime("%d %B %Y")
             by
-            = post.user.email
+            = post.user.username
           %p.body= truncate(post.body, length: 300)
           .buttons
             = link_to "Read more", post_path(post), class: "btn my-btn"

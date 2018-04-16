@@ -8,12 +8,13 @@
         %span.icon-bar
       %span.navbar-brand= link_to "BetterBlog", root_path
     #navbar.navbar-collapse.collapse
-      %ul.nav.navbar-nav.navbar-right.nav-buttons
+      .right-nav
         - if user_signed_in?
-          %li
-            = link_to "New post", new_post_path, class: "btn my-btn", type: "button"
-          %li
-            = link_to "Sign out", destroy_user_session_path, :method => :delete, class: "btn my-btn", type: "button"
-        - else
-          %li
-            = link_to "Sign in", new_user_session_path, class: "btn my-btn", type: "button"
+          %ul.nav.navbar-nav.navbar-right.nav-info
+            %li.username= current_user.username
+        %ul.nav.navbar-nav.navbar-right.nav-buttons
+          - if user_signed_in?
+            %li= link_to "New post", new_post_path, class: "btn my-btn", type: "button"
+            %li= link_to "Sign out", destroy_user_session_path, :method => :delete, class: "btn my-btn", type: "button"
+          - else
+            %li= link_to "Sign in", new_user_session_path, class: "btn my-btn", type: "button"

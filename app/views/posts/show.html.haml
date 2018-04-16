@@ -6,7 +6,7 @@
         Posted
         = time_ago_in_words(@post.created_at)
         ago by
-        = @post.user.email
+        = @post.user.username
       %p.body= @post.body
       - if user_signed_in? && @post.user == current_user
         .buttons
