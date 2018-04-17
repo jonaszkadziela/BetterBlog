@@ -29,7 +29,7 @@ RSpec.feature "Creating a comment to post" do
 
       expect(page).to have_content("prevented this comment from being saved:")
       expect(page).to have_content("Body can't be blank")
-      expect(current_path).to eq(post_path(post))
+      expect(current_path).to eq(post_path(post) + "/comments")
     end
   end
 
