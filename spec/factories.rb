@@ -14,5 +14,6 @@ FactoryBot.define do
   factory :comment do |c|
     c.sequence(:body) { |c| "Comment body #{c}" }
     user
+    post
   end
 end
