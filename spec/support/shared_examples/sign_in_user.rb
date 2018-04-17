@@ -4,8 +4,7 @@ RSpec.shared_examples "sign in user" do |user_login|
   scenario "with valid credentials" do
     visit "/"
     click_link "Sign in"
-    fill_in "Email or username", with: user.email if (user_login == :email)
-    fill_in "Email or username", with: user.username if (user_login == :username)
+    fill_in "Email or username", with: user.public_send(user_login)
     fill_in "Password", with: user.password
     click_button "Log in"
 
