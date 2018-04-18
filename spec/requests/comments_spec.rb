@@ -6,7 +6,7 @@ RSpec.describe "Comments", type: :request do
   let!(:post1) { FactoryBot.create(:post, user: user1) }
   let(:comment) { FactoryBot.build(:comment) }
 
-  describe "POST /articles/:id/comments" do
+  describe "POST /posts/:id/comments" do
     context "with anonymous user" do
       before do
         post "/posts/#{post1.id}/comments", params: { comment: { body: comment.body } }

@@ -1,42 +1,39 @@
 require "rails_helper"
 
-RSpec.feature "Editing a post" do
+RSpec.feature "Deleting a post comment" do
   let(:user1) { FactoryBot.create(:user) }
   let(:user2) { FactoryBot.create(:user) }
   let!(:post) { FactoryBot.create(:post, user: user1) }
+  let!(:comment) { FactoryBot.create(:comment, user: user1, post: post) }
 
   describe "a signed in user" do
-    scenario "edits his post" do
+    scenario "deletes his comment" do
       login_as(user1, :scope => :user)
       visit "/"
       click_link post.title
-      click_link "Edit"
-      fill_in "Title", with: "Updated title"
-      fill_in "Body", with: "Updated body"
-      click_button "Update Post"
+      find("a[href='#{post_comment_path(post, comment)}']").click
 
-      expect(page).to have_content "Post updated successfully!"
-      expect(page).to have_content "Updated title"
-      expect(page).to have_content "Updated body"
+      expect(page).to have_content "Comment deleted successfully!"
+      expect(page).not_to have_content comment.body
       expect(current_path).to eq(post_path(post))
     end
 
-    scenario "can't edit someone else's post" do
+    scenario "can't delete someone else's comment" do
       login_as(user2, :scope => :user)
       visit "/"
       click_link post.title
 
-      expect(page).not_to have_link("Edit", href: edit_post_path(post))
+      expect(page).not_to have_link("Delete", href: post_comment_path(post, comment))
       expect(current_path).to eq(post_path(post))
     end
   end
 
   describe "an anonymous user" do
-    scenario "can't edit someone's post" do
+    scenario "can't delete someone's comment" do
       visit "/"
       click_link post.title
 
-      expect(page).not_to have_link("Edit", href: edit_post_path(post))
+      expect(page).not_to have_link("Delete", href: post_comment_path(post, comment))
       expect(current_path).to eq(post_path(post))
     end
   end
