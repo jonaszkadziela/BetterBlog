@@ -1,5 +1,5 @@
 .form
-  = form_for([@post, @comment]) do |f|
+  = form_for([@post, @comment], remote: true) do |f|
     - if @comment.errors.any?
       .errors.alert.fade.in
         %a.close{"data-dismiss" => "alert", :href => "#"} ×

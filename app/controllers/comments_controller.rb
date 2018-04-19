@@ -6,12 +6,16 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.build(comment_params)
     @comment.user = current_user
-    if @comment.save
-      @new_comment = @post.comments.new
-      redirect_to post_path(@post), notice: "Comment created successfully!"
-    else
-      @new_comment = @comment
-      render 'posts/show'
+    respond_to do |format|
+      if @comment.save
+        @new_comment = @post.comments.new
+        format.html { redirect_to post_path(@post), notice: "Comment created successfully!" }
+        format.js
+      else
+        @new_comment = @comment
+        format.html { render 'posts/show' }
+        format.js { render 'failed_save' }
+      end
     end
   end
 
@@ -37,10 +41,13 @@ class CommentsController < ApplicationController
     if @comment.user != current_user
       redirect_to root_path, alert: "You can only delete your own comments!"
     else
-      if @comment.destroy
-        redirect_to post_path(@comment.post), notice: "Comment deleted successfully!"
-      else
-        redirect_to @comment, alert: "Could not delete the comment!"
+      respond_to do |format|
+        if @comment.destroy
+          format.html { redirect_to post_path(@comment.post), notice: "Comment deleted successfully!" }
+          format.js
+        else
+          format.html { redirect_to @comment, alert: "Could not delete the comment!" }
+        end
       end
     end
   end
