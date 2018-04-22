@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:a053a8bcdbaf1bef760baf2e54481210@soldierfish.redistogo.com:10669/
   channel_prefix: BetterBlog_production
