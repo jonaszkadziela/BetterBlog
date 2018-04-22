@@ -19,5 +19,4 @@
       .add-comment
         %h2 Add a comment
         #comment-form
-          - @comment = @new_comment
-          = render 'comments/form'
+          = render 'comments/form', comment: @new_comment

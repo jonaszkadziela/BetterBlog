@@ -8,9 +8,8 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     respond_to do |format|
       if @comment.save
-        @new_comment = @post.comments.new
         format.html { redirect_to post_path(@post), notice: "Comment created successfully!" }
-        format.js
+        format.js { @new_comment = @post.comments.new }
       else
         @new_comment = @comment
         format.html { render 'posts/show' }

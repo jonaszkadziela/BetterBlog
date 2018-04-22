@@ -1,5 +1,4 @@
 var comments_list = $('#comments-list');
 comments_list.append('<%= j (render partial: @comment) %>');
 $('#comments-count').html('<%= j (pluralize(@post.comments.count, "comment")) %>');
-<% @comment = @new_comment %>
-$('#comment-form').html('<%= j (render("comments/form")) %>');
+$('#comment-form').html('<%= j (render "comments/form", comment: @new_comment) %>');

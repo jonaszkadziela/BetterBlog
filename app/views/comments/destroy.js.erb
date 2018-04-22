@@ -1,2 +1,2 @@
-$('#comments-list').html('<%= j (render partial: @post.comments) %>');
+$('*[data-comment-id=' + <%= @comment.id %> + ']').remove();
 $('#comments-count').html('<%= j (pluralize(@post.comments.count, "comment")) %>');
