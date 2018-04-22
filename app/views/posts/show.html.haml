@@ -14,7 +14,7 @@
           = link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn my-btn-danger"
     .col-md-12.well
       %h2#comments-count= pluralize(@post.comments.count, "comment")
-      #comments-list
+      #comments-list{"data-post-id": @post.id}
         = render @post.reload.comments
       .add-comment
         %h2 Add a comment
