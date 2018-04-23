@@ -5,7 +5,7 @@ class RenderCommentJob < ApplicationJob
     count = comment.post.comments.count
     case method
     when "create"
-      ActionCable.server.broadcast "post:#{comment.post_id}", comment: render_comment(comment), count: render_count(count), method: method
+      ActionCable.server.broadcast "post:#{comment.post_id}", comment_id: comment.id, comment: render_comment(comment), count: render_count(count), method: method
     when "update"
       ActionCable.server.broadcast "post:#{comment.post_id}", comment_id: comment.id, comment: render_comment(comment), method: method
     when "destroy"

@@ -1,0 +1,10 @@
+- if obj.errors.any?
+  - obj_name = obj.class.model_name.human.downcase
+  .errors.alert.fade.in
+    %a.close{"data-dismiss" => "alert", :href => "#"} ×
+    %h2
+      = pluralize(obj.errors.count, "error")
+      prevented this #{obj_name} from being saved:
+    %ul
+      - obj.errors.full_messages.each do |msg|
+        %li= msg

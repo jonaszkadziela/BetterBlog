@@ -16,17 +16,25 @@ App.comments = App.cable.subscriptions.create "CommentsChannel",
       @perform 'unfollow'
 
   received: (data) ->
+    if data.comment_id != null
+      comment = @getCommentById(data.comment_id)
     switch data.method
       when "create"
         if !@userIsCurrentUser(data.comment)
-          @collection().prepend(data.comment)
+          @collection().append(data.comment)
           $('#comments-count').html(data.count)
+          @getCommentById(data.comment_id).animateCss 'zoomIn'
       when "update"
         if !@userIsCurrentUser(data.comment)
-          $('*[data-comment-id=' + data.comment_id + ']').parent().html(data.comment)
+          comment.parent().html(data.comment)
+          @getCommentById(data.comment_id).animateCss 'pulse'
       when "destroy"
-        $('*[data-comment-id=' + data.comment_id + ']').remove()
+        comment.animateCss 'zoomOut', ->
+          comment.remove()
         $('#comments-count').html(data.count)
 
   userIsCurrentUser: (comment) ->
     $(comment).attr('data-user-id') is $('meta[name=current-user]').attr('id')
+
+  getCommentById: (comment_id) ->
+    $('*[data-comment-id=' + comment_id + ']')

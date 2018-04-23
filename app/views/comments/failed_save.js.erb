@@ -1,1 +1,1 @@
-$('#comment-form').html('<%= j (render("comments/form")) %>');
+$('#comment-form').html('<%= j (render "comments/form", comment: @new_comment) %>');

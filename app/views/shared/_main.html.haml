@@ -7,7 +7,7 @@
         %li= link_to "Blog", root_path
         %li= link_to "About", about_path
       .nav-section.links
-        %p Find me on
+        %h3 Find me on
         .social
           %a{:href => "http://www.facebook.com/jonaszkadzielapl", :target => "_blank"}
             %i.fa.fa-facebook
@@ -17,7 +17,9 @@
             %i.fa.fa-github
           %a{:href => "http://www.youtube.com/channel/UCRGptWGCh-CsEEKVOFn_uwg", :target => "_blank"}
             %i.fa.fa-youtube-play
-    .main
+        .copyright
+          %p Jonasz Kądziela © 2018
+    %main.main
       .container.responsive
         = render 'layouts/flash_messages'
       = yield
