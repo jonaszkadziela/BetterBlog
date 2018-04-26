@@ -26,7 +26,7 @@ App.comments = App.cable.subscriptions.create "CommentsChannel",
           @getCommentById(data.comment_id).animateCss 'zoomIn'
       when "update"
         if !@userIsCurrentUser(data.comment)
-          comment.parent().html(data.comment)
+          comment.replaceWith(data.comment)
           @getCommentById(data.comment_id).animateCss 'pulse'
       when "destroy"
         comment.animateCss 'zoomOut', ->

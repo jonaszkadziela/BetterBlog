@@ -6,4 +6,6 @@
       Commented
       = time_ago_in_words(comment.created_at)
       ago
+      - if comment.created_at != comment.updated_at
+        (edited)
     %p.body= comment.body
