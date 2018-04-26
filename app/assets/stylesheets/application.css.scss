@@ -307,6 +307,10 @@ a
 	color: #fff;
 	text-align: center;
 	background: $primary-gradient;
+	.row
+	{
+		margin: 0;
+	}
 	.group
 	{
 		margin-bottom: 20px;

@@ -1,18 +1,18 @@
 FactoryBot.define do
-  factory :user do |u|
-    u.sequence(:username) { |u| "test#{u}" }
-    u.sequence(:email) { |u| "test#{u}@test.com" }
+  factory :user do
+    sequence(:username) { |n| "test#{n}" }
+    sequence(:email) { |n| "test#{n}@test.com" }
     password "qwerty"
   end
 
-  factory :post do |p|
-    p.sequence(:title) { |p| "Post title #{p}" }
-    p.sequence(:body) { |p| "Post body #{p}" }
+  factory :post do
+    sequence(:title) { |n| "Post title #{n}" }
+    sequence(:body) { |n| "Post body #{n}" }
     user
   end
 
-  factory :comment do |c|
-    c.sequence(:body) { |c| "Comment body #{c}" }
+  factory :comment do
+    sequence(:body) { |n| "Comment body #{n}" }
     user
     post
   end
