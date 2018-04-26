@@ -18,10 +18,12 @@
 @import "shared";
 @import "form";
 @import "pagination";
+@import "markdown";
 
 body, html
 {
 	font-family: Roboto, Helvetica, Arial, Geneva, sans-serif;
+	min-width: 350px;
 }
 
 body
@@ -49,6 +51,19 @@ a
 .circle
 {
 	border-radius: 50%;
+}
+
+.buttons
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+	position: relative;
+	margin-top: 15px;
+  a
+  {
+    margin-left: 5px;
+  }
 }
 
 .alert
