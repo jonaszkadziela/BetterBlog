@@ -24,13 +24,13 @@ class CommentsController < ApplicationController
 
   def edit
     if @comment.user != current_user
-      redirect_to root_path, alert: "You can only edit your own comments!"
+      redirect_to post_path(@comment.post), alert: "You can only edit your own comments!"
     end
   end
 
   def update
     if @comment.user != current_user
-      redirect_to root_path, alert: "You can only edit your own comments!"
+      redirect_to post_path(@comment.post), alert: "You can only edit your own comments!"
     else
       if @comment.update(comment_params)
         redirect_to post_path(@comment.post), notice: "Comment updated successfully!"
@@ -42,7 +42,7 @@ class CommentsController < ApplicationController
 
   def destroy
     if @comment.user != current_user
-      redirect_to root_path, alert: "You can only delete your own comments!"
+      redirect_to post_path(@comment.post), alert: "You can only delete your own comments!"
     else
       respond_to do |format|
         if @comment.destroy
