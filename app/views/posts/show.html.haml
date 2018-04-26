@@ -13,9 +13,10 @@
           = link_to "Edit", edit_post_path(@post), class: "btn my-btn"
           = link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn my-btn-danger"
     .col-md-12.well
-      %h2= pluralize(@post.comments.count, "comment")
-      = render @post.reload.comments
+      %h2#comments-count= pluralize(@post.comments.count, "comment")
+      #comments-list{"data-post-id": @post.id}
+        = render @post.reload.comments
       .add-comment
         %h2 Add a comment
-        - @comment = @new_comment
-        = render 'comments/form'
+        #comment-form
+          = render 'comments/form', comment: @new_comment

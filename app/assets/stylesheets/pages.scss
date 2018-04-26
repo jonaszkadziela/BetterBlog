@@ -22,15 +22,22 @@
   {
     padding: 30px !important;
     background-color: #eee;
+    display: flex;
+    flex-direction: row;
+  }
+  .col
+  {
+    display: flex;
+    align-items: center;
   }
   .profile-picture
   {
-    width: 100%;
-    height: 100%;
-    max-width: 300px;
-    max-height: 300px;
     display: block;
     margin: auto;
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    max-height: 300px;
   }
   .content
   {
@@ -119,6 +126,26 @@
   }
 }
 
+@media (max-width: $large-device)
+{
+  .about
+  {
+    .content
+    {
+      margin-left: 0;
+      h1
+      {
+        font-size: 40px;
+        margin-bottom: 20px;
+      }
+      p
+      {
+        font-size: 16px;
+      }
+    }
+  }
+}
+
 @media (max-width: $medium-device)
 {
   .responsive
@@ -127,6 +154,14 @@
   }
   .about
   {
+    .responsive
+    {
+      display: block !important;
+    }
+    .col
+    {
+      display: block !important;
+    }
     .profile-picture
     {
       max-width: 200px;
@@ -135,15 +170,10 @@
     }
     .content
     {
-      margin-left: 0;
       h1
       {
         font-size: 32px;
         margin-bottom: 15px;
-      }
-      p
-      {
-        font-size: 16px;
       }
     }
   }
