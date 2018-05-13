@@ -8,4 +8,4 @@
       ago
       - if comment.created_at != comment.updated_at
         (edited)
-    %p.body= comment.body
+    .body.markdown= markdown(comment.body)

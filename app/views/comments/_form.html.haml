@@ -1,7 +1,10 @@
 .form
   = form_for([@post, comment], remote: true) do |f|
     = render 'shared/error_messages', obj: f.object
-    .field
+    .field#mde0
       = f.label :body
-      = f.text_area :body, class: "resize-v", rows: "2", placeholder: "Comment body"
+      - if Rails.env.test?
+        = f.text_area :body, class: "resize-v", rows: "2", placeholder: "Comment body"
+      - else
+        = f.text_area :body, class: "markdown-editor resize-v", "data-mdeditor-type": "comment", rows: "2", placeholder: "Comment body"
     = f.submit

@@ -7,7 +7,7 @@
         = time_ago_in_words(@post.created_at)
         ago by
         = @post.user.username
-      %p.body= @post.body
+      .body.markdown= markdown(@post.body)
       - if user_signed_in? && @post.user == current_user
         .buttons
           = link_to "Edit", edit_post_path(@post), class: "btn my-btn"

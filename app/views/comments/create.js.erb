@@ -3,3 +3,8 @@ comments_list.append('<%= j (render partial: @comment) %>');
 $('*[data-comment-id=' + <%= @comment.id %> + ']').animateCss('zoomIn');
 $('#comments-count').html('<%= j (pluralize(@post.comments.count, "comment")) %>');
 $('#comment-form').html('<%= j (render "comments/form", comment: @new_comment) %>');
+clearMdEditors();
+createMdEditor();
+setTimeout(function() {
+  mdEditors[0].clearAutosavedValue();
+}, 500);

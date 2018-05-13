@@ -8,7 +8,7 @@
       ago
       - if comment.created_at != comment.updated_at
         (edited)
-    %p.body= comment.body
+    .body.markdown= markdown(comment.body)
     - if user_signed_in? && comment.user == current_user
       .buttons
         = link_to "Edit", edit_post_comment_path(@post, comment), class: "btn my-btn"
