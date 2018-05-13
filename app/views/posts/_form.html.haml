@@ -4,7 +4,10 @@
     .field
       = f.label :title
       = f.text_field :title, placeholder: "Post title", autofocus: true
-    .field
+    .field#mde1
       = f.label :body
-      = f.text_area :body, class: "resize-v", rows: "4", placeholder: "Post body"
+      - if Rails.env.test?
+        = f.text_area :body, class: "resize-v", rows: "6", placeholder: "Post body"
+      - else
+        = f.text_area :body, class: "markdown-editor resize-v", "data-mdeditor-type": "post", rows: "6", placeholder: "Post body"
     = f.submit

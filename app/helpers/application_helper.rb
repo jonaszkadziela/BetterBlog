@@ -7,21 +7,23 @@ module ApplicationHelper
   end
 
   def markdown(content)
-    options = {
-      hard_wrap: true,
-      filter_html: true,
-      tables: true,
-      autolink: true,
+    markdown_options = {
       no_intra_emphasis: true,
-      disable_indented_code_blocks: true,
+      tables: true,
       fenced_code_blocks: true,
-      lax_html_blocks: true,
+      autolink: true,
+      disable_indented_code_blocks: true,
+      lax_spacing: true,
       strikethrough: true,
-      superscript: true
+      footnotes: true
+    }
+    renderer_options = {
+      hard_wrap: true,
+      filter_html: true
     }
 
-    renderer = HTMLwithPygments.new()
-    Redcarpet::Markdown.new(renderer, options).render(content).html_safe
+    renderer = HTMLwithPygments.new(renderer_options)
+    Redcarpet::Markdown.new(renderer, markdown_options).render(content).html_safe
   end
 
   class HTMLwithPygments < Redcarpet::Render::HTML
