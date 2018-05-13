@@ -19,7 +19,6 @@ RSpec.describe Post, type: :model do
   end
 
   describe "association tests" do
-    it { should belong_to(:user).dependent(:destroy) }
     it { should have_many(:comments).dependent(:destroy) }
   end
 end
