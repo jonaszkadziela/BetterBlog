@@ -8,7 +8,7 @@ RSpec.feature "Editing a post comment" do
 
   describe "a signed in user" do
     scenario "edits his comment" do
-      login_as(user1, :scope => :user)
+      login_as(user1, scope: :user)
       visit "/"
       click_link post.title
       find("a[href='#{edit_post_comment_path(post, comment)}']").click
@@ -21,7 +21,7 @@ RSpec.feature "Editing a post comment" do
     end
 
     scenario "can't edit someone else's comment" do
-      login_as(user2, :scope => :user)
+      login_as(user2, scope: :user)
       visit "/"
       click_link post.title
 

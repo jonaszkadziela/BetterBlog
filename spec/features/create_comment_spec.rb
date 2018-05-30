@@ -7,7 +7,7 @@ RSpec.feature "Creating a comment to post" do
 
   describe "a signed in user" do
     before(:each) do
-      login_as(user, :scope => :user)
+      login_as(user, scope: :user)
       visit "/"
       click_link post.title
     end

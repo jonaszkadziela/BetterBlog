@@ -1,0 +1,22 @@
+inherit_gem:
+  ragnarson-stylecheck: config/rubocop.yml
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+    - config/**/*.rb
+    - Guardfile
+
+Metrics/LineLength:
+  Exclude:
+    - config/**/*.rb
+
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - db/schema.rb
+    - db/migrate/*
+    - bin/**

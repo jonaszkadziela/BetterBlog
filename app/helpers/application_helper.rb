@@ -8,17 +8,17 @@ module ApplicationHelper
 
   def markdown(content)
     markdown_options = {
-      no_intra_emphasis: true,
-      tables: true,
-      fenced_code_blocks: true,
-      autolink: true,
+      no_intra_emphasis:            true,
+      tables:                       true,
+      fenced_code_blocks:           true,
+      autolink:                     true,
       disable_indented_code_blocks: true,
-      lax_spacing: true,
-      strikethrough: true,
-      footnotes: true
+      lax_spacing:                  true,
+      strikethrough:                true,
+      footnotes:                    true
     }
     renderer_options = {
-      hard_wrap: true,
+      hard_wrap:   true,
       filter_html: true
     }
 

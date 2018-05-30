@@ -8,7 +8,7 @@ RSpec.feature "Deleting a post comment" do
 
   describe "a signed in user" do
     scenario "deletes his comment" do
-      login_as(user1, :scope => :user)
+      login_as(user1, scope: :user)
       visit "/"
       click_link post.title
       find("a[href='#{post_comment_path(post, comment)}']").click
@@ -19,7 +19,7 @@ RSpec.feature "Deleting a post comment" do
     end
 
     scenario "can't delete someone else's comment" do
-      login_as(user2, :scope => :user)
+      login_as(user2, scope: :user)
       visit "/"
       click_link post.title
 

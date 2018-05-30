@@ -7,7 +7,7 @@ RSpec.feature "Deleting a post" do
 
   describe "a signed in user" do
     scenario "deletes his post" do
-      login_as(user1, :scope => :user)
+      login_as(user1, scope: :user)
       visit "/"
       click_link post.title
       click_link "Delete"
@@ -17,7 +17,7 @@ RSpec.feature "Deleting a post" do
     end
 
     scenario "can't delete someone else's post" do
-      login_as(user2, :scope => :user)
+      login_as(user2, scope: :user)
       visit "/"
       click_link post.title
 

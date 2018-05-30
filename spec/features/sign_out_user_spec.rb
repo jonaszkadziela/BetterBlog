@@ -4,7 +4,7 @@ RSpec.feature "A user signs out" do
   let(:user) { FactoryBot.create(:user) }
 
   before do
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
   end
 
   scenario do
