@@ -8,6 +8,11 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*.rb
     - config/**/*.rb
+    - Guardfile
+
+Metrics/LineLength:
+  Exclude:
+    - config/**/*.rb
 
 AllCops:
   TargetRubyVersion: 2.5

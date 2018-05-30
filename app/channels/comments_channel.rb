@@ -7,8 +7,4 @@ class CommentsChannel < ApplicationCable::Channel
   def unfollow
     stop_all_streams
   end
-
-  def currentUserId
-    current_user.id
-  end
 end

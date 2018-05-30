@@ -28,27 +28,25 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.user != current_user
-      redirect_to post_path(@comment.post), alert: "You can only edit your own comments!"
+      return redirect_to post_path(@comment.post), alert: "You can only edit your own comments!"
+    end
+    if @comment.update(comment_params)
+      redirect_to post_path(@comment.post), notice: "Comment updated successfully!"
     else
-      if @comment.update(comment_params)
-        redirect_to post_path(@comment.post), notice: "Comment updated successfully!"
-      else
-        render :edit
-      end
+      render :edit
     end
   end
 
   def destroy
     if @comment.user != current_user
-      redirect_to post_path(@comment.post), alert: "You can only delete your own comments!"
-    else
-      respond_to do |format|
-        if @comment.destroy
-          format.html { redirect_to post_path(@comment.post), notice: "Comment deleted successfully!" }
-          format.js
-        else
-          format.html { redirect_to @comment, alert: "Could not delete the comment!" }
-        end
+      return redirect_to post_path(@comment.post), alert: "You can only delete your own comments!"
+    end
+    respond_to do |format|
+      if @comment.destroy
+        format.html { redirect_to post_path(@comment.post), notice: "Comment deleted successfully!" }
+        format.js
+      else
+        format.html { redirect_to @comment, alert: "Could not delete the comment!" }
       end
     end
   end
