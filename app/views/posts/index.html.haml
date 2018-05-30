@@ -16,7 +16,7 @@
             = post.created_at.strftime("%d %B %Y")
             by
             = post.user.username
-          .body.markdown= markdown(truncate(post.body, length: 300, escape: false))
+          .body.markdown= truncate_html(markdown(post.body), length: 300)
           .buttons
             = link_to "Read more", post_path(post), class: "btn my-btn"
       = will_paginate @posts, previous_label: "<< Previous", next_label: "Next >>"
