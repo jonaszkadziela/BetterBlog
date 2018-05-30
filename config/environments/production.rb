@@ -21,7 +21,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new(harmony: true)
@@ -52,7 +52,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -90,5 +90,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.web_socket_server_url = "wss://betterblog.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = ['https://betterblog.herokuapp.com', 'http://betterblog.herokuapp.com']
+  config.action_cable.allowed_request_origins = ["https://betterblog.herokuapp.com", "http://betterblog.herokuapp.com"]
 end

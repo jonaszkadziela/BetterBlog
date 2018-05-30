@@ -49,7 +49,7 @@ RSpec.describe "Comments", type: :request do
         login_as(user2)
         put "/posts/#{post1.id}/comments/#{comment1.id}", params: { comment: comment_attributes }
       end
-      
+
       it do
         expect(response).to redirect_to(post_path(post1))
         expect(response).to have_http_status(302)
@@ -62,7 +62,7 @@ RSpec.describe "Comments", type: :request do
         login_as(user1)
         put "/posts/#{post1.id}/comments/#{comment1.id}", params: { comment: comment_attributes }
       end
-      
+
       it do
         expect(response).to redirect_to(post_path(post1))
         expect(response).to have_http_status(302)
@@ -98,7 +98,7 @@ RSpec.describe "Comments", type: :request do
 
     context "with valid user" do
       before { login_as(user1) }
-      
+
       it do
         expect {
           delete "/posts/#{post1.id}/comments/#{comment1.id}"

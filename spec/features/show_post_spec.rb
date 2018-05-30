@@ -17,7 +17,7 @@ RSpec.feature "Showing single post" do
   end
 
   scenario "to user who does not own the post" do
-    login_as(user2, :scope => :user)
+    login_as(user2, scope: :user)
     visit "/"
     click_link post.title
 
@@ -29,7 +29,7 @@ RSpec.feature "Showing single post" do
   end
 
   scenario "to user who owns the post" do
-    login_as(user1, :scope => :user)
+    login_as(user1, scope: :user)
     visit "/"
     click_link post.title
 

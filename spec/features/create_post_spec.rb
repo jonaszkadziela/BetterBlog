@@ -6,7 +6,7 @@ RSpec.feature "Creating a post" do
 
   describe "a signed in user" do
     before(:each) do
-      login_as(user, :scope => :user)
+      login_as(user, scope: :user)
       visit "/"
       click_link "New post"
     end

@@ -7,7 +7,7 @@ RSpec.feature "Editing a post" do
 
   describe "a signed in user" do
     scenario "edits his post" do
-      login_as(user1, :scope => :user)
+      login_as(user1, scope: :user)
       visit "/"
       click_link post.title
       click_link "Edit"
@@ -22,7 +22,7 @@ RSpec.feature "Editing a post" do
     end
 
     scenario "can't edit someone else's post" do
-      login_as(user2, :scope => :user)
+      login_as(user2, scope: :user)
       visit "/"
       click_link post.title
 

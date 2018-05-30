@@ -8,7 +8,7 @@ RSpec.describe "Posts", type: :request do
 
   describe "GET #index" do
     before { get "/posts/" }
-    
+
     it do
       expect(path).to eq(posts_path)
       expect(response).to have_http_status(200)
@@ -52,7 +52,7 @@ RSpec.describe "Posts", type: :request do
         login_as(user1)
         get "/posts/new"
       end
-      
+
       it do
         expect(path).to eq(new_post_path)
         expect(response).to have_http_status(200)
@@ -111,7 +111,7 @@ RSpec.describe "Posts", type: :request do
 
     context "with valid user" do
       before { login_as(user1) }
-      
+
       it do
         expect {
           post "/posts/", params: { post: post_attributes }
@@ -139,7 +139,7 @@ RSpec.describe "Posts", type: :request do
         login_as(user2)
         put "/posts/#{post1.id}/", params: { post: post_attributes }
       end
-      
+
       it do
         expect(response).to redirect_to(root_path)
         expect(response).to have_http_status(302)
@@ -152,7 +152,7 @@ RSpec.describe "Posts", type: :request do
         login_as(user1)
         put "/posts/#{post1.id}/", params: { post: post_attributes }
       end
-      
+
       it do
         expect(response).to redirect_to(post_path(post1))
         expect(response).to have_http_status(302)
@@ -188,7 +188,7 @@ RSpec.describe "Posts", type: :request do
 
     context "with valid user" do
       before { login_as(user1) }
-      
+
       it do
         expect {
           delete "/posts/#{post1.id}/"

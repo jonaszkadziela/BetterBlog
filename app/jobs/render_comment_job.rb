@@ -14,11 +14,12 @@ class RenderCommentJob < ApplicationJob
   end
 
   private
+
   def render_comment(comment)
-    CommentsController.render(partial: 'comments/new_comment', locals: { comment: comment })
+    CommentsController.render(partial: "comments/new_comment", locals: { comment: comment })
   end
 
   def render_count(count)
-    CommentsController.render(partial: 'comments/new_count', locals: { count: count })
+    CommentsController.render(partial: "comments/new_count", locals: { count: count })
   end
 end

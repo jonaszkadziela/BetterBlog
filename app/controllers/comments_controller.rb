@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_post, only: [:create, :edit, :update, :destroy]
+  before_action :set_post, only: %i(create edit update destroy)
   before_action :set_comment, except: [:create]
   before_action :authenticate_user!, except: [:create]
 
@@ -13,8 +13,8 @@ class CommentsController < ApplicationController
           format.js { @new_comment = @post.comments.new }
         else
           @new_comment = @comment
-          format.html { render 'posts/show' }
-          format.js { render 'failed_save' }
+          format.html { render "posts/show" }
+          format.js { render "failed_save" }
         end
       end
     else
@@ -23,9 +23,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    if @comment.user != current_user
-      redirect_to post_path(@comment.post), alert: "You can only edit your own comments!"
-    end
+    redirect_to post_path(@comment.post), alert: "You can only edit your own comments!" if @comment.user != current_user
   end
 
   def update
@@ -56,10 +54,11 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def set_post
     @post = Post.find(params[:post_id])
   end
-  
+
   def set_comment
     @comment = @post.comments.find(params[:id])
   end
