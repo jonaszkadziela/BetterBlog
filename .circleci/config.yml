@@ -1,0 +1,59 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/BetterBlog
+    docker:
+      - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: BetterBlog
+      - image: circleci/postgres:9.6.9-alpine-postgis
+        environment:
+          POSTGRES_USER: BetterBlog
+          POSTGRES_PASSWORD: ""
+          POSTGRES_DB: BetterBlog_test
+
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          - v1-dependencies-
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      # Wait for Database
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+      # Setup the environment
+      - run: cp .env.example .env
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load --trace
+      # Run tests!
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+            
+            bundle exec rspec --format progress \
+                            --out /tmp/test-results/rspec.xml \
+                            $TEST_FILES
+      # Collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+      # Check code styling using ragnarson-stylecheck
+      - run:
+          name: run code stylecheck
+          command: |
+            bundle exec rake style
